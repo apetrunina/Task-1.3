@@ -1,0 +1,23 @@
+Пункт 1.
+cd /Users/stasya/docker - открываем папку с файлом Dockerfile на моем локальном компьютере.
+docker build -t test_image:latest . - создаем новый образ.
+docker run -d -p 5432:5432 --name test_container test_image:latest -  запускаем контейнер из образа.
+
+Пункт 2.
+docker exec -it test_container psql -U postgres - запускаем интерактивную среду в командной строке для работы с Постгрес.
+
+Пункт 3. 
+После редактирования Dockerfile в терминале перейти в директорию с ним, в моем случае: cd /Users/stasya/docker
+
+Запустить команду docker build для перестройки образа:
+
+   docker build -t test_image:latest .
+
+После успешной перестройки образа останавливаю и удаляю предыдущий контейнер:
+
+   docker stop test_container
+   docker rm test_container
+
+Запускаю новый контейнер на основе обновленного образа:
+
+   docker run -d -p 5432:5432 --name test_container test_image:latest
